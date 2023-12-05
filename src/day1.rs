@@ -3,7 +3,7 @@ use std::fs;
 pub fn main() {
     println!("DAY 1:");
     let file_path:String = "./src/day1real.txt".to_string();
-    let contents = fs::read_to_string(file_path)
+    let contents = fs::read_to_string(file_path.clone())
         .expect("Should have been able to read the file");
     println!("In file {}", file_path);
     let mut total:u32 = 0;
