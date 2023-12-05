@@ -1,6 +1,7 @@
 mod day1;
 mod day2;
 mod day3;
+mod day4;
 
 use text_io::read;
 
@@ -11,6 +12,7 @@ fn main() {
         1 => day1::main(),
         2 => day2::main(),
         3 => day3::main(),
+        4 => day4::main(),
         _ => println!("incorrect input"),
     }
 }
