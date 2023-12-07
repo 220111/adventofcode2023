@@ -57,11 +57,11 @@ fn part1(file_path: String) {
 }
 
 fn part2(file_path: String) {
-    let contents = fs::read_to_string(file_path).expect("Should have been able to read the file");
+    let contents: String = fs::read_to_string(file_path).expect("Should have been able to read the file");
 
     let mut total: u32 = 0;
     let mut grid: Vec<Vec<char>> = Vec::new();
-    let mut gears = HashMap::new();
+    let mut gears: HashMap<usize, u32> = HashMap::new();
 
     //collect chars into vectors
     for line in contents.lines() {
