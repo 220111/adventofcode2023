@@ -23,5 +23,5 @@ pub fn main() {
         }
     }
 
-    println!("With text:\n{}", total.to_string());
+    println!("With text:\n{}", total);
 }

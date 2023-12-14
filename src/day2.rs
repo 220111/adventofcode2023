@@ -6,7 +6,7 @@ fn part1(file_path: String) {
     let mut possible: Vec<u32> = Vec::new();
 
     for line in contents.lines() {
-        let l: Vec<&str> = line.split_terminator(":").collect();
+        let l: Vec<&str> = line.split_terminator(':').collect();
 
         //Get number of game
         let n: u32 = l[0]
@@ -16,9 +16,9 @@ fn part1(file_path: String) {
 
         //Get if possible
         let mut pos: bool = true;
-        for play in l[1].split_terminator(";") {
-            for cube in play.split_terminator(",") {
-                let v: Vec<&str> = cube.trim().split_whitespace().collect();
+        for play in l[1].split_terminator(';') {
+            for cube in play.split_terminator(',') {
+                let v: Vec<&str> = cube.split_whitespace().collect();
                 let num: u32 = v[0].parse().expect("Should be a number");
                 match v[1] {
                     "blue" => {
@@ -45,7 +45,7 @@ fn part1(file_path: String) {
         }
     }
 
-    println!("Part 1:\n{}", possible.iter().sum::<u32>().to_string());
+    println!("Part 1:\n{}", possible.iter().sum::<u32>());
 }
 
 fn part2(file_path: String) {
@@ -54,15 +54,15 @@ fn part2(file_path: String) {
     let mut values: Vec<u32> = Vec::new();
 
     for line in contents.lines() {
-        let l: Vec<&str> = line.split_terminator(":").collect();
+        let l: Vec<&str> = line.split_terminator(':').collect();
 
         let mut blue: u32 = 0;
         let mut green: u32 = 0;
         let mut red: u32 = 0;
 
-        for play in l[1].split_terminator(";") {
-            for cube in play.split_terminator(",") {
-                let v: Vec<&str> = cube.trim().split_whitespace().collect();
+        for play in l[1].split_terminator(';') {
+            for cube in play.split_terminator(',') {
+                let v: Vec<&str> = cube.split_whitespace().collect();
                 let num: u32 = v[0].parse().expect("Should be a number");
                 match v[1] {
                     "blue" => {
@@ -87,7 +87,7 @@ fn part2(file_path: String) {
         values.push(blue * green * red);
     }
 
-    println!("Part 2:\n{}", values.iter().sum::<u32>().to_string());
+    println!("Part 2:\n{}", values.iter().sum::<u32>());
 }
 
 pub fn main() {

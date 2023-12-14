@@ -7,10 +7,10 @@ fn part1(file_path: String) {
 
     for line in contents.lines() {
         let mut game_total: u32 = 0;
-        let split_line: Vec<&str> = line.split_terminator("|").collect();
-        let winning: Vec<u32> = split_line[0].split_terminator(":").collect::<Vec<&str>>()[1]
+        let split_line: Vec<&str> = line.split_terminator('|').collect();
+        let winning: Vec<u32> = split_line[0].split_terminator(':').collect::<Vec<&str>>()[1]
             .trim()
-            .split_terminator(" ")
+            .split_terminator(' ')
             .collect::<Vec<&str>>()
             .iter()
             .filter(|x| x != &&"")
@@ -18,7 +18,7 @@ fn part1(file_path: String) {
             .collect();
         let actual: Vec<u32> = split_line[1]
             .trim()
-            .split_terminator(" ")
+            .split_terminator(' ')
             .collect::<Vec<&str>>()
             .iter()
             .filter(|x| x != &&"")
@@ -29,7 +29,7 @@ fn part1(file_path: String) {
                 if game_total == 0 {
                     game_total = 1;
                 } else {
-                    game_total = game_total * 2;
+                    game_total *= 2;
                 }
             }
         });
@@ -37,7 +37,7 @@ fn part1(file_path: String) {
         total += game_total;
     }
 
-    println!("Part 1:\n{}", total.to_string());
+    println!("Part 1:\n{}", total);
 }
 
 fn part2(file_path: String) {
@@ -47,10 +47,10 @@ fn part2(file_path: String) {
 
     for (i, line) in contents.lines().enumerate() {
         let mut game_total: u32 = 0;
-        let split_line: Vec<&str> = line.split_terminator("|").collect();
-        let winning: Vec<u32> = split_line[0].split_terminator(":").collect::<Vec<&str>>()[1]
+        let split_line: Vec<&str> = line.split_terminator('|').collect();
+        let winning: Vec<u32> = split_line[0].split_terminator(':').collect::<Vec<&str>>()[1]
             .trim()
-            .split_terminator(" ")
+            .split_terminator(' ')
             .collect::<Vec<&str>>()
             .iter()
             .filter(|x| x != &&"")
@@ -58,7 +58,7 @@ fn part2(file_path: String) {
             .collect();
         let actual: Vec<u32> = split_line[1]
             .trim()
-            .split_terminator(" ")
+            .split_terminator(' ')
             .collect::<Vec<&str>>()
             .iter()
             .filter(|x| x != &&"")
@@ -70,10 +70,10 @@ fn part2(file_path: String) {
             }
         });
         for x in i + 1..=i + (game_total as usize) {
-            mult[x] += 1 * mult[i];
+            mult[x] += mult[i];
         }
     }
-    println!("Part 2:\n{}", mult.iter().sum::<u32>().to_string());
+    println!("Part 2:\n{}", mult.iter().sum::<u32>());
 }
 
 pub fn main() {

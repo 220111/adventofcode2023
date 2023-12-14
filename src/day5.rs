@@ -1,6 +1,6 @@
 use std::fs;
 
-fn trace_back_through_all_maps(maps: &Vec<Vec<Vec<u64>>>, seed: &u64) -> u64 {
+fn trace_back_through_all_maps(maps: &[Vec<Vec<u64>>], seed: &u64) -> u64 {
     let mut target: u64 = *seed;
     maps.iter().for_each(|y| {
         for map in y {
@@ -18,7 +18,6 @@ fn part1(file_path: String) {
 
     let blocks: Vec<&str> = contents.split_terminator("\n\n").collect();
     let seeds: Vec<u64> = blocks[0].split_terminator(':').collect::<Vec<&str>>()[1]
-        .trim()
         .split_whitespace()
         .map(|x| x.parse().expect("Parsing seed numbers failed."))
         .collect();
@@ -48,9 +47,11 @@ fn part1(file_path: String) {
     println!("Part 1:\n{:?}", locations.iter().min().unwrap());
 }
 
-fn trace_back_through_all_maps_with_range(maps: &Vec<Vec<Vec<u64>>>, seeds: &(u64,u64)) -> u64 {
+fn trace_back_through_all_maps_with_range(maps: &[Vec<Vec<u64>>], seeds: &(u64, u64)) -> u64 {
     let (seed, range) = *seeds;
-    let possible:Vec<u64> = (seed..seed+range).map(|x| trace_back_through_all_maps(&maps, &x)).collect();
+    let possible: Vec<u64> = (seed..seed + range)
+        .map(|x| trace_back_through_all_maps(maps, &x))
+        .collect();
     *possible.iter().min().unwrap()
 }
 
@@ -59,15 +60,14 @@ fn part2(file_path: String) {
 
     let blocks: Vec<&str> = contents.split_terminator("\n\n").collect();
     let seeds: Vec<u64> = blocks[0].split_terminator(':').collect::<Vec<&str>>()[1]
-        .trim()
         .split_whitespace()
         .map(|x| x.parse().expect("Parsing seed numbers failed."))
         .collect();
 
-    let mut seed_ranges:Vec<(u64,u64)> = Vec::new();
-    for index in 0..seeds.len()-1{
-        if index%2 == 0 {
-            seed_ranges.push((seeds[index], seeds[index+1]));
+    let mut seed_ranges: Vec<(u64, u64)> = Vec::new();
+    for index in 0..seeds.len() - 1 {
+        if index % 2 == 0 {
+            seed_ranges.push((seeds[index], seeds[index + 1]));
         }
     }
 

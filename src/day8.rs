@@ -22,10 +22,7 @@ fn part1(file_path: String) {
             let dests: Vec<&str> = line[1].split(", ").collect();
             map.insert(
                 String::from(line[0]),
-                [
-                    String::from(dests[0].replace("(", "")),
-                    String::from(dests[1].replace(")", "")),
-                ],
+                [dests[0].replace('(', ""), dests[1].replace(')', "")],
             );
         });
 
@@ -33,7 +30,7 @@ fn part1(file_path: String) {
     let mut moves: u32 = 0;
     let mut inst_iter = inst.iter().cycle();
 
-    while cur != String::from("ZZZ") {
+    while cur != *"ZZZ" {
         moves += 1;
         let next = inst_iter
             .next()
@@ -41,7 +38,7 @@ fn part1(file_path: String) {
         cur = map.get(&cur).expect("Map is missing a value")[*next as usize].clone();
     }
 
-    println!("Part 1:\n{}", moves.to_string());
+    println!("Part 1:\n{}", moves);
 }
 
 fn part2(_file_path: String) {
@@ -74,8 +71,6 @@ fn part2(_file_path: String) {
     //     });
 
     // let mut map: HashMap<&str, [&str; 2]> = HashMap::new();
-
-
 
     // let cur: Vec<&str> = contents.split_terminator("\n\n").collect::<Vec<&str>>()[1]
     //     .lines()

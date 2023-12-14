@@ -26,10 +26,15 @@ fn part1(file_path: String) {
     let totals: Vec<u32> = times
         .iter()
         .enumerate()
-        .map(|(i, time)| (0..*time).map(|x| (*time-x)*(x)).filter(|x| *x > distances[i]).count() as u32)
+        .map(|(i, time)| {
+            (0..*time)
+                .map(|x| (*time - x) * (x))
+                .filter(|x| *x > distances[i])
+                .count() as u32
+        })
         .collect();
 
-    println!("Part 1:\n{}", totals.iter().product::<u32>().to_string());
+    println!("Part 1:\n{}", totals.iter().product::<u32>());
 }
 
 fn part2(file_path: String) {
@@ -38,18 +43,23 @@ fn part2(file_path: String) {
     let time_string: String = contents.split_terminator('\n').collect::<Vec<&str>>()[0]
         .split_terminator(':')
         .collect::<Vec<&str>>()[1]
-        .trim().replace(" ", "");
+        .trim()
+        .replace(' ', "");
     let distance_string: String = contents.split_terminator('\n').collect::<Vec<&str>>()[1]
         .split_terminator(':')
         .collect::<Vec<&str>>()[1]
-        .trim().replace(" ", "");
+        .trim()
+        .replace(' ', "");
 
-    let time:u64 = time_string.parse().expect("should be number");
-    let distance:u64 = distance_string.parse().expect("should be number");
+    let time: u64 = time_string.parse().expect("should be number");
+    let distance: u64 = distance_string.parse().expect("should be number");
 
-    let total:u64 = (0..time).map(|x| (time-x)*(x)).filter(|x| *x > distance).count() as u64;
+    let total: u64 = (0..time)
+        .map(|x| (time - x) * (x))
+        .filter(|x| *x > distance)
+        .count() as u64;
 
-    println!("Part 2:\n{}", total.to_string());
+    println!("Part 2:\n{}", total);
 }
 
 pub fn main() {

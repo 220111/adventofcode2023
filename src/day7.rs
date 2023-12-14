@@ -17,7 +17,7 @@ fn generate_data(line: &str) -> (u32, u32, String) {
     let hand_value: u32 = line.split_whitespace().collect::<Vec<&str>>()[1]
         .parse()
         .expect("Error parsing hand value");
-    (hand_hex, hand_value, String::from(hand_string))
+    (hand_hex, hand_value, hand_string)
 }
 
 enum HandType {
@@ -75,7 +75,7 @@ fn part1(file_path: String) {
     let mut one: Vec<(u32, u32)> = Vec::new();
     let mut high: Vec<(u32, u32)> = Vec::new();
 
-    let hands: Vec<(u32, u32, String)> = contents.lines().map(|x| generate_data(x)).collect();
+    let hands: Vec<(u32, u32, String)> = contents.lines().map(generate_data).collect();
 
     for hand in hands.clone() {
         let (num, val, hand_string) = hand;
@@ -163,7 +163,7 @@ fn generate_data_jokers(line: &str) -> (u32, u32, String) {
     let hand_value: u32 = line.split_whitespace().collect::<Vec<&str>>()[1]
         .parse()
         .expect("Error parsing hand value");
-    (hand_hex, hand_value, String::from(hand_string))
+    (hand_hex, hand_value, hand_string)
 }
 
 fn classify_hand_joker(hand: &str) -> HandType {
@@ -246,8 +246,7 @@ fn part2(file_path: String) {
     let mut one: Vec<(u32, u32)> = Vec::new();
     let mut high: Vec<(u32, u32)> = Vec::new();
 
-    let hands: Vec<(u32, u32, String)> =
-        contents.lines().map(|x| generate_data_jokers(x)).collect();
+    let hands: Vec<(u32, u32, String)> = contents.lines().map(generate_data_jokers).collect();
 
     for hand in hands.clone() {
         let (num, val, hand_string) = hand;
